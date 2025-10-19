@@ -40,7 +40,7 @@ public class DogApiBreedFetcher implements BreedFetcher {
             String status = messageJSON.getString("status");
 
             if (!status.equals("success")) {
-                throw new BreedNotFoundException("Breed not found: " + breed);
+                throw new BreedNotFoundException("Breed not found");
             }
 
             JSONArray message = messageJSON.getJSONArray("message");
