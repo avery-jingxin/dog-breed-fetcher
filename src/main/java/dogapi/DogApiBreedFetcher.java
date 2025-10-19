@@ -4,7 +4,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -17,7 +16,6 @@ import java.util.*;
  */
 public class DogApiBreedFetcher implements BreedFetcher {
     private final OkHttpClient client = new OkHttpClient();
-    private static final String API_URL = "https://dog.ceo/api/breed";
 
     /**
      * Fetch the list of sub breeds for the given breed from the dog.ceo API.
@@ -27,7 +25,7 @@ public class DogApiBreedFetcher implements BreedFetcher {
      * @throws BreedNotFoundException if the breed does not exist (or if the API call fails for any reason)
      */
     @Override
-    public List<String> getSubBreeds(String breed) {
+    public List<String> getSubBreeds(String breed) throws BreedNotFoundException{
         final OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         Request request = new Request.Builder().url("https://dog.ceo/api/breed/" + breed + "/list").build();
@@ -54,9 +52,8 @@ public class DogApiBreedFetcher implements BreedFetcher {
 
         } catch (IOException e) {
             throw new BreedNotFoundException(breed);
-        } catch (JSONException e) {
-            throw new BreedNotFoundException(breed);
-        }
 
+
+        }
     }
 }
