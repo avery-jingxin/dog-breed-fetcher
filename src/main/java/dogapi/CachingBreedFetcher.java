@@ -16,7 +16,7 @@ public class CachingBreedFetcher implements BreedFetcher {
     private int callsMade = 0;
     private final HashMap<String, List<String>> cachedSubBreeds = new HashMap<>();
     private BreedFetcher fetcher = null;
-    
+
     public CachingBreedFetcher(BreedFetcher fetcher) {
         this.fetcher = fetcher;
     }
